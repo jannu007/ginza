@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GINZA AI OFFICE | 銀座発・AI経営支援オフィス</title>
+<meta name="description" content="銀座発のAI経営支援オフィス。経理・秘書・採用・法務・議事録・分析・接客まで、会社運営に必要な業務をAIツールで支えます。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%230a0908%22/><text x=%2250%22 y=%2268%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23c9a659%22>銀</text></svg>">
+<meta name="theme-color" content="#0a0908">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=1">
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="progress-bar" id="progressBar"></div>
+<canvas id="ginzaCanvas"></canvas>
+
+<!-- ===== Loader ===== -->
+<div class="loader" id="loader">
+  <div class="loader-mark">銀座</div>
+</div>
+
+<!-- ===== Header ===== -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#top" class="logo"><span class="hanko">銀</span>GINZA<span>AI OFFICE</span></a>
+    <nav class="nav" id="nav">
+      <a href="#service" data-label="壱">Service</a>
+      <a href="#about" data-label="弐">About</a>
+      <a href="#news" data-label="参">News</a>
+      <a href="#access" data-label="肆">Access</a>
+      <a href="#contact" data-label="伍">Contact</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="メニュー">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Mobile Nav ===== -->
+<div class="mobile-nav" id="mobileNav">
+  <nav>
+    <a href="#service">Service<span>AIツール</span></a>
+    <a href="#about">About<span>会社概要</span></a>
+    <a href="#news">News<span>お知らせ</span></a>
+    <a href="#access">Access<span>アクセス</span></a>
+    <a href="#contact">Contact<span>お問い合わせ</span></a>
+  </nav>
+</div>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="willow left" aria-hidden="true">
+      <svg viewBox="0 0 140 600" preserveAspectRatio="none"><path d="M20 0 C 10 120, 40 200, 15 320 C -5 420, 25 500, 10 600" fill="none" stroke-width="1.2"/><path d="M20 0 C 30 140, 5 240, 30 360 C 45 460, 15 520, 34 600" fill="none" stroke-width="1"/></svg>
+    </div>
+    <div class="willow right" aria-hidden="true">
+      <svg viewBox="0 0 140 600" preserveAspectRatio="none"><path d="M20 0 C 10 120, 40 200, 15 320 C -5 420, 25 500, 10 600" fill="none" stroke-width="1.2"/><path d="M20 0 C 30 140, 5 240, 30 360 C 45 460, 15 520, 34 600" fill="none" stroke-width="1"/></svg>
+    </div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow reveal">AI Management Office, Ginza 4-chome</p>
+      <h1 class="hero-title">
+        <span class="reveal-line"><span>銀座から、</span></span>
+        <span class="reveal-line"><span>会社の明日を</span></span>
+        <span class="reveal-line"><span class="accent">動かす。</span></span>
+      </h1>
+      <p class="hero-desc reveal">
+        GINZA AI OFFICE は、経理・秘書・採用・法務・議事録・分析・接客 ―― <br class="pc-only">
+        経営に欠かせない7つの業務をAIツールで支える、銀座発の運営支援オフィスです。
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#service" class="btn btn-primary"><span>AIツールを見る</span></a>
+        <a href="#contact" class="btn btn-line"><span>お問い合わせ</span></a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>経理 — 秘書 — 採用 — 議事録 — 契約書 — 競合分析 — 接客</span><span>経理 — 秘書 — 採用 — 議事録 — 契約書 — 競合分析 — 接客</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="seal-mark" aria-hidden="true"><div class="seal-mark-inner">運</div></div>
+
+  <!-- ===== Service / Tools ===== -->
+  <section class="service" id="service">
+    <div class="section-head">
+      <p class="section-num reveal"><span>壱</span>SERVICE</p>
+      <h2 class="section-title reveal">
+        <span class="jp">7つの業務AIツール</span>
+        <span class="en">Seven AI Tools for Company Operations</span>
+      </h2>
+    </div>
+
+    <div class="tool-grid">
+      <div class="tool-card reveal" data-modal="tool-secretary">
+        <p class="tool-num">壱</p>
+        <h3 class="tool-name">AI秘書</h3>
+        <p class="tool-en">Priority Scheduler</p>
+        <p class="tool-desc">タスクの重要度と締切を入力するだけで、今日の作業順と時間割をAIが組み立てます。</p>
+        <p class="tool-open">ツールを開く</p>
+      </div>
+      <div class="tool-card reveal" data-modal="tool-accounting">
+        <p class="tool-num">弐</p>
+        <h3 class="tool-name">AI経理アシスタント</h3>
+        <p class="tool-en">Expense Settlement</p>
+        <p class="tool-desc">経費の品目を入力すると、カテゴリ別集計・消費税・精算サマリーを自動作成します。</p>
+        <p class="tool-open">ツールを開く</p>
+      </div>
+      <div class="tool-card reveal" data-modal="tool-recruit">
+        <p class="tool-num">参</p>
+        <h3 class="tool-name">AI採用サポーター</h3>
+        <p class="tool-en">Job Posting Generator</p>
+        <p class="tool-desc">職種・必須スキル・働き方を入れるだけで、求人票の本文をその場で生成します。</p>
+        <p class="tool-open">ツールを開く</p>
+      </div>
+      <div class="tool-card reveal" data-modal="tool-minutes">
+        <p class="tool-num">肆</p>
+        <h3 class="tool-name">AI議事録メーカー</h3>
+        <p class="tool-en">Minutes Auto-Formatter</p>
+        <p class="tool-desc">箇条書きのメモを貼るだけで、決定事項・ネクストアクションを整理した議事録に変換します。</p>
+        <p class="tool-open">ツールを開く</p>
+      </div>
+      <div class="tool-card reveal" data-modal="tool-contract">
+        <p class="tool-num">伍</p>
+        <h3 class="tool-name">AI契約書チェッカー</h3>
+        <p class="tool-en">Contract Risk Scanner</p>
+        <p class="tool-desc">契約書の本文を貼り付けると、注意すべき条項キーワードを自動検出しリスクを可視化します。</p>
+        <p class="tool-open">ツールを開く</p>
+      </div>
+      <div class="tool-card reveal" data-modal="tool-swot">
+        <p class="tool-num">陸</p>
+        <h3 class="tool-name">AI競合分析アシスタント</h3>
+        <p class="tool-en">SWOT Generator</p>
+        <p class="tool-desc">強み・弱み・機会・脅威を箇条書きで入力すると、整理されたSWOTマトリクスを作成します。</p>
+        <p class="tool-open">ツールを開く</p>
+      </div>
+      <div class="tool-card reveal" data-modal="tool-concierge">
+        <p class="tool-num">漆</p>
+        <h3 class="tool-name">AIカスタマーサポート</h3>
+        <p class="tool-en">Ginza Concierge Chat</p>
+        <p class="tool-desc">料金・導入・アクセスなど、よくある質問にその場で答える銀座オフィス受付AIです。</p>
+        <p class="tool-open">ツールを開く</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="seal-mark" aria-hidden="true"><div class="seal-mark-inner">誠</div></div>
+
+  <!-- ===== About ===== -->
+  <section class="about" id="about">
+    <div class="section-head">
+      <p class="section-num reveal"><span>弐</span>ABOUT</p>
+      <h2 class="section-title reveal">
+        <span class="jp">会社概要</span>
+        <span class="en">Who We Are</span>
+      </h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p class="about-lead reveal">
+          老舗の商いが軒を連ねる銀座の一室から、<br class="pc-only">
+          中小企業の「人手が足りない業務」をAIで支える。
+        </p>
+        <p class="about-body reveal">
+          GINZA AI OFFICE は、経理・秘書・採用・法務・議事録・競合分析・顧客対応という、
+          どの会社にも欠かせないが専任者を置きにくい業務を、7つのAIツールとして提供する運営支援オフィスです。
+          派手な自動化ではなく、担当者の手元にそっと寄り添う道具立てを大切にしています。
+        </p>
+        <div class="stats">
+          <div class="stat reveal">
+            <p class="stat-num" data-count="120">0</p>
+            <p class="stat-label">支援企業数（社）</p>
+          </div>
+          <div class="stat reveal">
+            <p class="stat-num" data-count="7">0</p>
+            <p class="stat-label">提供AIツール数</p>
+          </div>
+          <div class="stat reveal">
+            <p class="stat-num" data-count="42">0</p>
+            <p class="stat-label">月間削減時間（h/社）</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-panel reveal">
+        <h3>運営方針</h3>
+        <ul class="about-list">
+          <li><b>拠点</b>東京都中央区・銀座四丁目</li>
+          <li><b>事業内容</b>AI業務ツールの企画・開発・提供</li>
+          <li><b>対象</b>中小企業・個人事業主のバックオフィス</li>
+          <li><b>方針</b>専門知識がなくても使える、シンプルな道具</li>
+          <li><b>価格</b>まずは無料ツールから、必要な分だけ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="seal-mark" aria-hidden="true"><div class="seal-mark-inner">信</div></div>
+
+  <!-- ===== News ===== -->
+  <section class="news" id="news">
+    <div class="section-head">
+      <p class="section-num reveal"><span>参</span>NEWS</p>
+      <h2 class="section-title reveal">
+        <span class="jp">お知らせ</span>
+        <span class="en">Latest Updates</span>
+      </h2>
+    </div>
+    <div class="news-list">
+      <div class="news-item reveal">
+        <p class="news-date">2026.07.27</p>
+        <p class="news-tag">Release</p>
+        <p class="news-title">AI会社運営を支援する7つの業務ツールを公開しました。</p>
+      </div>
+      <div class="news-item reveal">
+        <p class="news-date">2026.07.10</p>
+        <p class="news-tag">News</p>
+        <p class="news-title">銀座四丁目オフィスにて、中小企業向けAI活用の個別相談を開始しました。</p>
+      </div>
+      <div class="news-item reveal">
+        <p class="news-date">2026.06.02</p>
+        <p class="news-tag">Update</p>
+        <p class="news-title">AI契約書チェッカーのリスク条項辞書を拡充しました。</p>
+      </div>
+      <div class="news-item reveal">
+        <p class="news-date">2026.05.15</p>
+        <p class="news-tag">Media</p>
+        <p class="news-title">経営者向けメディアにて、AIによるバックオフィス支援の取り組みが紹介されました。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="seal-mark" aria-hidden="true"><div class="seal-mark-inner">和</div></div>
+
+  <!-- ===== Access / Contact ===== -->
+  <section class="access" id="access">
+    <div class="section-head">
+      <p class="section-num reveal"><span>肆</span>ACCESS</p>
+      <h2 class="section-title reveal">
+        <span class="jp">アクセス</span>
+        <span class="en">Find Us in Ginza</span>
+      </h2>
+    </div>
+    <div class="access-grid">
+      <div class="access-map reveal" aria-hidden="true">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#131109"/>
+          <g stroke="#c9a659" stroke-opacity="0.35" stroke-width="1">
+            <line x1="0" y1="150" x2="400" y2="150"/>
+            <line x1="200" y1="0" x2="200" y2="300"/>
+            <line x1="0" y1="80" x2="400" y2="80"/>
+            <line x1="0" y1="220" x2="400" y2="220"/>
+            <line x1="90" y1="0" x2="90" y2="300"/>
+            <line x1="310" y1="0" x2="310" y2="300"/>
+          </g>
+          <circle cx="200" cy="150" r="7" fill="#c8433f"/>
+          <circle cx="200" cy="150" r="16" fill="none" stroke="#c8433f" stroke-width="1">
+            <animate attributeName="r" values="12;28;12" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <text x="200" y="140" text-anchor="middle" fill="#e9cd8a" font-size="14" font-family="Shippori Mincho, serif">銀座四丁目</text>
+        </svg>
+      </div>
+      <div class="access-info reveal">
+        <dl>
+          <dt>所在地</dt><dd>〒104-0061 東京都中央区銀座四丁目<br class="pc-only">GINZA AI OFFICE ビル 5F</dd>
+          <dt>最寄駅</dt><dd>東京メトロ 銀座駅より徒歩2分</dd>
+          <dt>営業時間</dt><dd>平日 10:00 – 19:00（土日祝休）</dd>
+          <dt>連絡先</dt><dd><a href="mailto:hello@ginza-ai-office.jp">hello@ginza-ai-office.jp</a></dd>
+        </dl>
+        <div class="contact-cta" id="contact">
+          <a href="mailto:hello@ginza-ai-office.jp" class="btn btn-primary"><span>相談してみる</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 GINZA AI OFFICE</p>
+    <p>Independent AI Business Support Office, Ginza 4-chome, Tokyo</p>
+  </footer>
+</main>
+
+<!-- ==========================================================================
+     Tool Modals
+     ========================================================================== -->
+
+<!-- 壱: AI秘書 -->
+<div class="modal-overlay" id="modal-tool-secretary">
+  <div class="modal">
+    <button class="modal-close" data-close>×</button>
+    <div class="modal-head">
+      <p class="modal-num">壱</p>
+      <h3 class="modal-title">AI秘書 ― 優先順位スケジューラー</h3>
+      <p class="modal-sub">Priority Scheduler</p>
+    </div>
+    <div id="secretary-rows"></div>
+    <div class="tool-actions">
+      <button class="btn-ghost" id="secretary-add">＋ タスクを追加</button>
+      <button class="btn-run" id="secretary-run">並べ替える</button>
+    </div>
+    <div class="result-panel" id="secretary-result">
+      <h4>本日のおすすめスケジュール</h4>
+      <ol class="result-list" id="secretary-output"></ol>
+    </div>
+  </div>
+</div>
+
+<!-- 弐: AI経理アシスタント -->
+<div class="modal-overlay" id="modal-tool-accounting">
+  <div class="modal">
+    <button class="modal-close" data-close>×</button>
+    <div class="modal-head">
+      <p class="modal-num">弐</p>
+      <h3 class="modal-title">AI経理アシスタント ― 経費精算シミュレーター</h3>
+      <p class="modal-sub">Expense Settlement</p>
+    </div>
+    <div class="field">
+      <label>金額の入力方法</label>
+      <select id="acc-mode">
+        <option value="in">税込金額で入力</option>
+        <option value="ex">税抜金額で入力</option>
+      </select>
+    </div>
+    <div id="accounting-rows"></div>
+    <div class="tool-actions">
+      <button class="btn-ghost" id="accounting-add">＋ 品目を追加</button>
+      <button class="btn-run" id="accounting-run">精算を計算する</button>
+    </div>
+    <div class="result-panel" id="accounting-result">
+      <h4>精算サマリー</h4>
+      <div class="summary-row" id="accounting-summary"></div>
+      <div class="tag-cloud" id="accounting-categories"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 参: AI採用サポーター -->
+<div class="modal-overlay" id="modal-tool-recruit">
+  <div class="modal">
+    <button class="modal-close" data-close>×</button>
+    <div class="modal-head">
+      <p class="modal-num">参</p>
+      <h3 class="modal-title">AI採用サポーター ― 求人票ジェネレーター</h3>
+      <p class="modal-sub">Job Posting Generator</p>
+    </div>
+    <div class="field">
+      <label>職種名</label>
+      <input type="text" id="rec-role" placeholder="例）バックオフィス担当">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>働き方</label>
+        <select id="rec-style">
+          <option>フルリモート</option>
+          <option>ハイブリッド（週2出社）</option>
+          <option>フル出社</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>雇用形態</label>
+        <select id="rec-employment">
+          <option>正社員</option>
+          <option>契約社員</option>
+          <option>業務委託</option>
+          <option>アルバイト・パート</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>必須スキル（カンマ区切り）</label>
+      <input type="text" id="rec-must" placeholder="例）経理実務3年以上, Excel関数">
+    </div>
+    <div class="field">
+      <label>歓迎スキル（カンマ区切り・任意）</label>
+      <input type="text" id="rec-nice" placeholder="例）簿記2級, 英語での対応">
+    </div>
+    <div class="field">
+      <label>一言PR（任意）</label>
+      <input type="text" id="rec-pr" placeholder="例）銀座の小さなオフィスでのびのび働けます">
+    </div>
+    <div class="tool-actions">
+      <button class="btn-run" id="recruit-run">求人票を生成する</button>
+    </div>
+    <div class="result-panel" id="recruit-result">
+      <h4>生成された求人票</h4>
+      <textarea class="result-text" id="recruit-output" readonly></textarea>
+      <button class="copy-btn" data-copy="#recruit-output">コピーする</button>
+    </div>
+  </div>
+</div>
+
+<!-- 肆: AI議事録メーカー -->
+<div class="modal-overlay" id="modal-tool-minutes">
+  <div class="modal">
+    <button class="modal-close" data-close>×</button>
+    <div class="modal-head">
+      <p class="modal-num">肆</p>
+      <h3 class="modal-title">AI議事録メーカー ― 議事録オートフォーマッター</h3>
+      <p class="modal-sub">Minutes Auto-Formatter</p>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>会議名</label>
+        <input type="text" id="min-title" placeholder="例）月次経営会議">
+      </div>
+      <div class="field">
+        <label>日時</label>
+        <input type="text" id="min-date" placeholder="例）2026/07/27 14:00">
+      </div>
+    </div>
+    <div class="field">
+      <label>参加者（カンマ区切り）</label>
+      <input type="text" id="min-attendees" placeholder="例）田中, 佐藤, 鈴木">
+    </div>
+    <div class="field">
+      <label>メモ（1行1項目。「決定：」「TODO：」から始めると自動で分類されます）</label>
+      <textarea id="min-notes" placeholder="例）&#10;来期の広告予算について議論&#10;決定：広告予算を20%増額する&#10;TODO：佐藤が代理店に見積を依頼する"></textarea>
+    </div>
+    <div class="tool-actions">
+      <button class="btn-run" id="minutes-run">議事録を作成する</button>
+    </div>
+    <div class="result-panel" id="minutes-result">
+      <h4>整形された議事録</h4>
+      <textarea class="result-text" id="minutes-output" readonly></textarea>
+      <button class="copy-btn" data-copy="#minutes-output">コピーする</button>
+    </div>
+  </div>
+</div>
+
+<!-- 伍: AI契約書チェッカー -->
+<div class="modal-overlay" id="modal-tool-contract">
+  <div class="modal">
+    <button class="modal-close" data-close>×</button>
+    <div class="modal-head">
+      <p class="modal-num">伍</p>
+      <h3 class="modal-title">AI契約書チェッカー ― リスク条項スキャナー</h3>
+      <p class="modal-sub">Contract Risk Scanner</p>
+    </div>
+    <div class="field">
+      <label>契約書の本文を貼り付けてください</label>
+      <textarea id="con-text" style="min-height:180px" placeholder="契約書の条文をここに貼り付けます..."></textarea>
+    </div>
+    <div class="tool-actions">
+      <button class="btn-run" id="contract-run">リスクをチェックする</button>
+    </div>
+    <div class="result-panel" id="contract-result">
+      <h4>スキャン結果</h4>
+      <div class="summary-row" id="contract-summary"></div>
+      <div class="tag-cloud" id="contract-tags" style="margin-bottom:16px;"></div>
+      <ol class="result-list" id="contract-sentences"></ol>
+    </div>
+  </div>
+</div>
+
+<!-- 陸: AI競合分析アシスタント -->
+<div class="modal-overlay" id="modal-tool-swot">
+  <div class="modal">
+    <button class="modal-close" data-close>×</button>
+    <div class="modal-head">
+      <p class="modal-num">陸</p>
+      <h3 class="modal-title">AI競合分析アシスタント ― SWOTジェネレーター</h3>
+      <p class="modal-sub">SWOT Generator</p>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>強み（Strengths・1行1項目）</label>
+        <textarea id="swot-s" placeholder="例）&#10;銀座という立地の信頼感&#10;対応の速さ"></textarea>
+      </div>
+      <div class="field">
+        <label>弱み（Weaknesses・1行1項目）</label>
+        <textarea id="swot-w" placeholder="例）&#10;知名度がまだ低い&#10;人員が少ない"></textarea>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>機会（Opportunities・1行1項目）</label>
+        <textarea id="swot-o" placeholder="例）&#10;中小企業のAI活用ニーズ拡大"></textarea>
+      </div>
+      <div class="field">
+        <label>脅威（Threats・1行1項目）</label>
+        <textarea id="swot-t" placeholder="例）&#10;大手のAI参入"></textarea>
+      </div>
+    </div>
+    <div class="tool-actions">
+      <button class="btn-run" id="swot-run">SWOTを整理する</button>
+    </div>
+    <div class="result-panel" id="swot-result">
+      <h4>SWOTマトリクス</h4>
+      <div class="swot-grid">
+        <div class="swot-cell s"><h5>強み S</h5><ul id="swot-out-s"></ul></div>
+        <div class="swot-cell w"><h5>弱み W</h5><ul id="swot-out-w"></ul></div>
+        <div class="swot-cell o"><h5>機会 O</h5><ul id="swot-out-o"></ul></div>
+        <div class="swot-cell t"><h5>脅威 T</h5><ul id="swot-out-t"></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 漆: AIカスタマーサポート -->
+<div class="modal-overlay" id="modal-tool-concierge">
+  <div class="modal">
+    <button class="modal-close" data-close>×</button>
+    <div class="modal-head">
+      <p class="modal-num">漆</p>
+      <h3 class="modal-title">AIカスタマーサポート ― 銀座オフィス コンシェルジュ</h3>
+      <p class="modal-sub">Ginza Concierge Chat</p>
+    </div>
+    <div class="chat-window" id="chat-window">
+      <div class="chat-bubble bot">いらっしゃいませ。GINZA AI OFFICE 受付AIです。営業時間・料金・導入方法など、お気軽にお尋ねください。</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="ご質問を入力してください...">
+      <button class="btn-run" id="chat-send">送信</button>
+    </div>
+    <div class="chat-quick">
+      <button data-q="営業時間を教えて">営業時間</button>
+      <button data-q="料金はいくらですか">料金</button>
+      <button data-q="アクセス方法は？">アクセス</button>
+      <button data-q="導入までの流れは？">導入の流れ</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/main.js?v=1"></script>
+<script src="assets/js/tools.js?v=1"></script>
+</body>
+</html>
