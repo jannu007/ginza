@@ -7,6 +7,58 @@
     setTimeout(() => loader.classList.add("done"), 500);
   });
 
+  /* ===== Wako-style tower clock ===== */
+  (() => {
+    const ticksGroup = document.getElementById("clockTicks");
+    const numeralsGroup = document.getElementById("clockNumerals");
+    if (!ticksGroup || !numeralsGroup) return;
+
+    const SVG_NS = "http://www.w3.org/2000/svg";
+    const ROMAN = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
+
+    for (let i = 0; i < 60; i++) {
+      const angle = i * 6;
+      const major = i % 5 === 0;
+      const rInner = major ? 71 : 79;
+      const line = document.createElementNS(SVG_NS, "line");
+      line.setAttribute("x1", "100");
+      line.setAttribute("y1", String(100 - 87));
+      line.setAttribute("x2", "100");
+      line.setAttribute("y2", String(100 - rInner));
+      line.setAttribute("class", "clock-tick" + (major ? " major" : ""));
+      line.setAttribute("transform", `rotate(${angle} 100 100)`);
+      ticksGroup.appendChild(line);
+    }
+
+    ROMAN.forEach((numeral, i) => {
+      const angle = ((i * 30) - 90) * (Math.PI / 180);
+      const x = 100 + Math.cos(angle) * 62;
+      const y = 100 + Math.sin(angle) * 62;
+      const text = document.createElementNS(SVG_NS, "text");
+      text.setAttribute("x", String(x));
+      text.setAttribute("y", String(y));
+      text.setAttribute("class", "clock-numeral");
+      text.textContent = numeral;
+      numeralsGroup.appendChild(text);
+    });
+
+    const hourHand = document.getElementById("clockHour");
+    const minuteHand = document.getElementById("clockMinute");
+    const secondHand = document.getElementById("clockSecond");
+
+    function tick() {
+      const now = new Date();
+      const h = now.getHours() % 12;
+      const m = now.getMinutes();
+      const s = now.getSeconds();
+      hourHand.style.transform = `rotate(${h * 30 + m * 0.5}deg)`;
+      minuteHand.style.transform = `rotate(${m * 6 + s * 0.1}deg)`;
+      secondHand.style.transform = `rotate(${s * 6}deg)`;
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
   /* ===== Cursor dot ===== */
   const cursorDot = document.getElementById("cursorDot");
   let cx = 0, cy = 0, dx = 0, dy = 0;

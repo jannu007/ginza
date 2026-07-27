@@ -386,6 +386,47 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
 .marquee-track span::after { content: "銀座 · GINZA AI OFFICE ·"; margin-left: 3em; color: var(--gold-deep); }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+/* ===== Wako-style tower clock ===== */
+.wako-clock {
+  position: absolute;
+  top: clamp(120px, 14vw, 190px);
+  right: clamp(20px, 5vw, 90px);
+  width: clamp(150px, 17vw, 230px);
+  z-index: 0;
+  filter: drop-shadow(0 6px 26px rgba(0,0,0,.5));
+}
+.wako-clock svg { width: 100%; height: auto; overflow: visible; }
+.wako-clock .clock-outer { fill: var(--bg-panel); stroke: var(--gold); stroke-width: 2; }
+.wako-clock .clock-inner-ring { fill: none; stroke: var(--gold-deep); stroke-width: .75; }
+.wako-clock .clock-tick { stroke: var(--gold-deep); stroke-width: 1.2; }
+.wako-clock .clock-tick.major { stroke: var(--gold); stroke-width: 2.2; }
+.wako-clock .clock-numeral {
+  fill: var(--gold-bright);
+  font-family: var(--font-deco);
+  font-size: 11px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.wako-clock .hand { stroke-linecap: round; transform-origin: 100px 100px; }
+.wako-clock .hand.hour { stroke: var(--ink); stroke-width: 4; }
+.wako-clock .hand.minute { stroke: var(--ink); stroke-width: 2.6; }
+.wako-clock .hand.second {
+  stroke: var(--seal-bright);
+  stroke-width: 1;
+  transition: transform .18s cubic-bezier(.2, 2, .4, 1);
+}
+.wako-clock .clock-cap { fill: var(--gold-bright); }
+.wako-clock .clock-label {
+  fill: var(--ink-faint);
+  font-family: var(--font-deco);
+  font-style: italic;
+  font-size: 9px;
+  text-anchor: middle;
+  letter-spacing: 1px;
+}
+@media (max-width: 1080px) { .wako-clock { display: none; } }
+@media (prefers-reduced-motion: reduce) { .wako-clock .hand.second { transition: none; } }
+
 /* ===== Willow silhouettes ===== */
 .willow {
   position: absolute; top: 0; height: 100%; width: 140px;
@@ -403,37 +444,38 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
 .willow.right { animation: sway 7s ease-in-out infinite reverse; }
 @media (max-width: 900px) { .willow { display: none; } }
 
-/* ===== Art Deco medallion divider ===== */
+/* ===== Clock-tower medallion divider (after Wako's clock) ===== */
 .seal-mark {
   display: flex; align-items: center; justify-content: center;
   padding: 10px 0 0;
 }
 .seal-mark-inner {
   position: relative;
-  width: 68px; height: 68px;
+  width: 72px; height: 72px;
   display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--gold);
-  transform: rotate(45deg);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  background: var(--bg-panel);
+  box-shadow: 0 0 0 4px var(--bg), 0 0 18px rgba(201,162,39,.25);
 }
 .seal-mark-inner::before {
   content: "";
   position: absolute;
-  inset: 9px;
-  border: 1px solid var(--gold-deep);
+  inset: 4px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(var(--gold-deep) 0deg 1.6deg, transparent 1.6deg 30deg);
 }
 .seal-mark-inner::after {
   content: "";
   position: absolute;
-  inset: -16px;
-  z-index: -1;
+  inset: 13px;
   border-radius: 50%;
-  background: repeating-conic-gradient(var(--seal) 0deg 3.5deg, transparent 3.5deg 18deg);
-  opacity: .4;
+  background: var(--bg-panel);
+  border: 1px solid var(--gold-deep);
 }
 .seal-mark-inner span {
   position: relative;
   z-index: 2;
-  transform: rotate(-45deg);
   color: var(--gold-bright);
   font-family: var(--font-serif);
   font-size: 1.1rem;
