@@ -114,7 +114,12 @@
       speed: 0.15 + Math.random() * 0.5,
       drift: (Math.random() - 0.5) * 0.4,
       alpha: 0.15 + Math.random() * 0.5,
-      hue: Math.random() > 0.85 ? "200,60,60" : "201,166,89",
+      hue: (() => {
+        const r = Math.random();
+        if (r > 0.82) return "255,92,138";
+        if (r > 0.64) return "51,207,192";
+        return "255,180,60";
+      })(),
     };
   }
   const COUNT = Math.min(90, Math.floor((window.innerWidth * window.innerHeight) / 14000));
