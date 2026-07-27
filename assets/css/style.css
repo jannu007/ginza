@@ -3,21 +3,21 @@
    ========================================================================== */
 
 :root {
-  --bg: #0c100d;
-  --bg-alt: #121711;
-  --bg-panel: #171d16;
-  --ink: #f1e9d6;
-  --ink-dim: #b8ab8d;
-  --ink-faint: #6f6a55;
-  --gold: #c9a227;
-  --gold-bright: #e8c766;
-  --gold-deep: #8a6d1f;
-  --seal: #7a1f2e;
-  --seal-bright: #a8384a;
-  --teal: #1f5c46;
-  --teal-bright: #3d8f6d;
-  --line: rgba(201, 162, 39, 0.2);
-  --shadow: rgba(0, 0, 0, 0.55);
+  --bg: #faf3e8;
+  --bg-alt: #f3e8d7;
+  --bg-panel: #eee0c9;
+  --ink: #493c30;
+  --ink-dim: #7a6b58;
+  --ink-faint: #a4977f;
+  --gold: #c9924a;
+  --gold-bright: #dcae6f;
+  --gold-deep: #9c6a28;
+  --seal: #c67b76;
+  --seal-bright: #d99a92;
+  --teal: #7fa896;
+  --teal-bright: #a3c7b6;
+  --line: rgba(156, 106, 40, 0.22);
+  --shadow: rgba(120, 96, 66, 0.25);
 
   --font-serif: "Shippori Mincho", serif;
   --font-deco: "Cormorant Garamond", serif;
@@ -56,27 +56,47 @@ textarea, input, select {
 .pc-only { display: inline; }
 @media (max-width: 720px) { .pc-only { display: none; } }
 
-/* ===== Texture / aged-photograph grain ===== */
+/* ===== Texture / watercolor paper grain ===== */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.06;
-  mix-blend-mode: overlay;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
-/* ===== Vignette ===== */
+/* ===== Soft paper vignette ===== */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.5) 100%);
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(156,106,40,.1) 100%);
 }
+
+/* ===== Watercolor wash blobs ===== */
+.watercolor-wash {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.watercolor-wash span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: .4;
+  mix-blend-mode: multiply;
+}
+.watercolor-wash .b1 { top: -8%; left: -6%; width: 42vw; height: 42vw; background: radial-gradient(circle, var(--seal-bright), transparent 70%); }
+.watercolor-wash .b2 { top: 18%; right: -10%; width: 36vw; height: 36vw; background: radial-gradient(circle, var(--teal-bright), transparent 70%); }
+.watercolor-wash .b3 { bottom: -12%; left: 12%; width: 46vw; height: 46vw; background: radial-gradient(circle, var(--gold-bright), transparent 70%); }
+.watercolor-wash .b4 { bottom: 8%; right: 8%; width: 30vw; height: 30vw; background: radial-gradient(circle, var(--seal-bright), transparent 70%); }
 
 /* ===== Fixed Deco corner frame ===== */
 .deco-frame span {
@@ -85,7 +105,7 @@ body::after {
   width: 34px; height: 34px;
   pointer-events: none;
   border: 1px solid var(--gold-deep);
-  opacity: .55;
+  opacity: .4;
 }
 .deco-frame .tl { top: 18px; left: 18px; border-right: none; border-bottom: none; }
 .deco-frame .tr { top: 18px; right: 18px; border-left: none; border-bottom: none; }
@@ -135,7 +155,7 @@ body::after {
   font-family: var(--font-serif);
   font-size: clamp(2rem, 6vw, 3.4rem);
   letter-spacing: .4em;
-  color: var(--gold);
+  color: var(--gold-deep);
   padding-left: .4em;
   position: relative;
 }
@@ -157,7 +177,8 @@ body::after {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: .55;
+  opacity: .9;
+  mix-blend-mode: multiply;
 }
 
 /* ===== Header ===== */
@@ -171,7 +192,7 @@ body::after {
   border-bottom: 1px solid transparent;
 }
 .header.scrolled {
-  background: rgba(10, 9, 8, 0.88);
+  background: rgba(250, 243, 232, 0.86);
   backdrop-filter: blur(10px);
   padding-block: 14px;
   border-color: var(--line);
@@ -193,14 +214,14 @@ body::after {
   width: 32px; height: 32px;
   border: 1.5px solid var(--gold);
   position: relative;
-  color: var(--gold-bright);
+  color: var(--gold-deep);
   border-radius: 2px;
   font-size: .95rem;
   font-family: var(--font-serif);
   transform: rotate(45deg);
 }
 .logo .hanko span { display: inline-block; transform: rotate(-45deg); }
-.logo span:last-child { color: var(--gold-bright); margin-left: .2em; font-size: .68em; letter-spacing: .28em; font-family: var(--font-deco); }
+.logo span:last-child { color: var(--gold-deep); margin-left: .2em; font-size: .68em; letter-spacing: .28em; font-family: var(--font-deco); }
 
 .nav { display: flex; gap: clamp(18px, 2.4vw, 40px); }
 .nav a {
@@ -241,7 +262,7 @@ body::after {
 
 .mobile-nav {
   position: fixed; inset: 0;
-  background: rgba(10,9,8,.98);
+  background: rgba(250,243,232,.98);
   z-index: 480;
   display: flex; align-items: center; justify-content: center;
   opacity: 0; visibility: hidden;
@@ -264,7 +285,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   letter-spacing: .3em;
   margin-bottom: 14px;
 }
-.section-num span { color: var(--seal-bright); font-size: 1.5rem; margin-right: .3em; }
+.section-num span { color: var(--seal); font-size: 1.5rem; margin-right: .3em; }
 .section-title { display: flex; flex-direction: column; gap: 6px; }
 .section-title .jp {
   font-family: var(--font-serif);
@@ -312,7 +333,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
 }
 .hero-title .accent {
   position: relative;
-  background: linear-gradient(100deg, var(--seal-bright) 40%, var(--gold-bright) 50%, var(--seal-bright) 60%);
+  background: linear-gradient(100deg, var(--seal) 40%, var(--gold-deep) 50%, var(--seal) 60%);
   background-size: 260% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -341,21 +362,22 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   font-family: var(--font-deco);
   font-size: 1rem;
   letter-spacing: .14em;
-  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-  transition: color .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  transition: color .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease);
 }
 .btn span { position: relative; z-index: 2; }
 .btn-primary {
   border: 1px solid var(--gold);
-  color: var(--bg);
+  color: #fffaf2;
   background: var(--gold);
+  box-shadow: 0 6px 20px rgba(156,106,40,.25);
 }
-.btn-primary:hover { background: var(--gold-bright); border-color: var(--gold-bright); }
+.btn-primary:hover { background: var(--gold-deep); border-color: var(--gold-deep); box-shadow: 0 8px 26px rgba(156,106,40,.35); }
 .btn-line {
   border: 1px solid var(--line);
   color: var(--ink);
 }
-.btn-line:hover { border-color: var(--gold); color: var(--gold-bright); }
+.btn-line:hover { border-color: var(--gold); color: var(--gold-deep); box-shadow: 0 6px 20px rgba(156,106,40,.18); }
 
 .hero-scroll {
   position: absolute;
@@ -393,7 +415,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   right: clamp(20px, 5vw, 90px);
   width: clamp(150px, 17vw, 230px);
   z-index: 0;
-  filter: drop-shadow(0 6px 26px rgba(0,0,0,.5));
+  filter: drop-shadow(0 6px 22px rgba(156,106,40,.25));
 }
 .wako-clock svg { width: 100%; height: auto; overflow: visible; }
 .wako-clock .clock-outer { fill: var(--bg-panel); stroke: var(--gold); stroke-width: 2; }
@@ -401,7 +423,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
 .wako-clock .clock-tick { stroke: var(--gold-deep); stroke-width: 1.2; }
 .wako-clock .clock-tick.major { stroke: var(--gold); stroke-width: 2.2; }
 .wako-clock .clock-numeral {
-  fill: var(--gold-bright);
+  fill: var(--gold-deep);
   font-family: var(--font-deco);
   font-size: 11px;
   text-anchor: middle;
@@ -411,11 +433,11 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
 .wako-clock .hand.hour { stroke: var(--ink); stroke-width: 4; }
 .wako-clock .hand.minute { stroke: var(--ink); stroke-width: 2.6; }
 .wako-clock .hand.second {
-  stroke: var(--seal-bright);
+  stroke: var(--seal);
   stroke-width: 1;
   transition: transform .18s cubic-bezier(.2, 2, .4, 1);
 }
-.wako-clock .clock-cap { fill: var(--gold-bright); }
+.wako-clock .clock-cap { fill: var(--gold-deep); }
 .wako-clock .clock-label {
   fill: var(--ink-faint);
   font-family: var(--font-deco);
@@ -427,15 +449,16 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
 @media (max-width: 1080px) { .wako-clock { display: none; } }
 @media (prefers-reduced-motion: reduce) { .wako-clock .hand.second { transition: none; } }
 
-/* ===== Willow silhouettes ===== */
+/* ===== Willow silhouettes (soft brush-stroke) ===== */
 .willow {
   position: absolute; top: 0; height: 100%; width: 140px;
-  pointer-events: none; opacity: .5; z-index: 0;
+  pointer-events: none; opacity: .45; z-index: 0;
+  filter: blur(.4px);
 }
 .willow.left { left: 0; transform-origin: top center; }
 .willow.right { right: 0; transform: scaleX(-1); transform-origin: top center; }
 .willow svg { width: 100%; height: 100%; }
-.willow path { stroke: var(--gold-deep); }
+.willow path { stroke: var(--teal); }
 @keyframes sway {
   0%, 100% { transform: rotate(0deg); }
   50% { transform: rotate(1.4deg); }
@@ -456,7 +479,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   border: 2px solid var(--gold);
   border-radius: 50%;
   background: var(--bg-panel);
-  box-shadow: 0 0 0 4px var(--bg), 0 0 18px rgba(201,162,39,.25);
+  box-shadow: 0 0 0 4px var(--bg), 0 0 18px rgba(201,146,74,.3);
 }
 .seal-mark-inner::before {
   content: "";
@@ -476,7 +499,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
 .seal-mark-inner span {
   position: relative;
   z-index: 2;
-  color: var(--gold-bright);
+  color: var(--gold-deep);
   font-family: var(--font-serif);
   font-size: 1.1rem;
 }
@@ -502,7 +525,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
 .stat-num {
   font-family: var(--font-serif);
   font-size: clamp(1.8rem, 3.4vw, 2.6rem);
-  color: var(--gold-bright);
+  color: var(--gold-deep);
   display: flex; align-items: baseline; gap: 2px;
 }
 .stat-label { font-size: .72rem; color: var(--ink-faint); letter-spacing: .08em; margin-top: 6px; }
@@ -517,7 +540,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   font-family: var(--font-serif);
   font-size: 1.2rem;
   margin-bottom: 20px;
-  color: var(--gold-bright);
+  color: var(--gold-deep);
 }
 .about-list li {
   display: flex; gap: 14px;
@@ -548,7 +571,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
 .tool-card:hover { background: var(--bg-panel); }
 .tool-num {
   font-family: var(--font-serif);
-  color: var(--seal-bright);
+  color: var(--seal);
   font-size: 1.4rem;
 }
 .tool-name {
@@ -618,7 +641,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
    ========================================================================== */
 .modal-overlay {
   position: fixed; inset: 0;
-  background: rgba(6,5,4,.82);
+  background: rgba(73,60,48,.35);
   backdrop-filter: blur(4px);
   z-index: 700;
   display: flex; align-items: center; justify-content: center;
@@ -650,10 +673,10 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   font-size: 1rem;
   transition: border-color .3s, color .3s, transform .3s;
 }
-.modal-close:hover { border-color: var(--gold); color: var(--gold-bright); transform: rotate(90deg); }
+.modal-close:hover { border-color: var(--gold); color: var(--gold-deep); transform: rotate(90deg); }
 
 .modal-head { margin-bottom: 26px; padding-right: 40px; }
-.modal-num { font-family: var(--font-serif); color: var(--seal-bright); font-size: 1.1rem; }
+.modal-num { font-family: var(--font-serif); color: var(--seal); font-size: 1.1rem; }
 .modal-title { font-family: var(--font-serif); font-size: 1.6rem; margin-top: 6px; }
 .modal-sub { font-family: var(--font-deco); font-style: italic; font-size: 1rem; color: var(--ink-faint); letter-spacing: .06em; margin-top: 4px; }
 
@@ -686,7 +709,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   color: var(--ink-faint); font-size: .9rem;
   transition: border-color .3s, color .3s;
 }
-.row-remove:hover { border-color: var(--seal-bright); color: var(--seal-bright); }
+.row-remove:hover { border-color: var(--seal); color: var(--seal); }
 
 .tool-actions { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
 .btn-ghost {
@@ -697,7 +720,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   border-radius: 3px;
   transition: border-color .3s, color .3s;
 }
-.btn-ghost:hover { border-color: var(--gold); color: var(--gold-bright); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold-deep); }
 .btn-run {
   border: 1px solid var(--gold);
   background: var(--gold);
@@ -718,7 +741,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   display: none;
 }
 .result-panel.show { display: block; }
-.result-panel h4 { font-family: var(--font-serif); color: var(--gold-bright); font-size: 1rem; margin-bottom: 14px; }
+.result-panel h4 { font-family: var(--font-serif); color: var(--gold-deep); font-size: 1rem; margin-bottom: 14px; }
 
 .result-list { display: flex; flex-direction: column; gap: 8px; }
 .result-list li {
@@ -728,7 +751,7 @@ section { position: relative; padding: clamp(90px, 14vw, 160px) clamp(20px, 6vw,
   border-left: 2px solid var(--gold-deep);
   font-size: .88rem;
 }
-.result-list li .rank { font-family: var(--font-serif); color: var(--seal-bright); min-width: 1.6em; }
+.result-list li .rank { font-family: var(--font-serif); color: var(--seal); min-width: 1.6em; }
 .result-list li .badge {
   font-size: .68rem; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--gold-deep); color: var(--gold);
 }
@@ -755,7 +778,7 @@ pre.result-text, textarea.result-text {
   border-radius: 3px;
   min-width: 120px;
 }
-.summary-chip .n { font-family: var(--font-serif); font-size: 1.3rem; color: var(--gold-bright); }
+.summary-chip .n { font-family: var(--font-serif); font-size: 1.3rem; color: var(--gold-deep); }
 .summary-chip .l { font-size: .7rem; color: var(--ink-faint); margin-top: 4px; }
 
 .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -763,8 +786,8 @@ pre.result-text, textarea.result-text {
   font-size: .78rem;
   padding: 6px 12px;
   border-radius: 20px;
-  border: 1px solid var(--seal-bright);
-  color: var(--seal-bright);
+  border: 1px solid var(--seal);
+  color: var(--seal);
 }
 .tag-cloud .tag.low { border-color: var(--gold-deep); color: var(--gold); }
 
@@ -777,8 +800,8 @@ pre.result-text, textarea.result-text {
   min-height: 120px;
 }
 .swot-cell h5 { font-family: var(--font-serif); font-size: .95rem; margin-bottom: 10px; }
-.swot-cell.s h5, .swot-cell.o h5 { color: var(--gold-bright); }
-.swot-cell.w h5, .swot-cell.t h5 { color: var(--seal-bright); }
+.swot-cell.s h5, .swot-cell.o h5 { color: var(--gold-deep); }
+.swot-cell.w h5, .swot-cell.t h5 { color: var(--seal); }
 .swot-cell ul li { font-size: .82rem; color: var(--ink-dim); padding: 3px 0; }
 .swot-cell ul li::before { content: "・"; color: var(--gold-deep); }
 
@@ -793,8 +816,8 @@ pre.result-text, textarea.result-text {
   margin-bottom: 14px;
 }
 .chat-bubble { max-width: 82%; padding: 10px 14px; border-radius: 4px; font-size: .86rem; line-height: 1.7; }
-.chat-bubble.user { align-self: flex-end; background: var(--gold-deep); color: #100d08; }
-.chat-bubble.bot { align-self: flex-start; background: rgba(255,180,60,0.08); border: 1px solid var(--line); }
+.chat-bubble.user { align-self: flex-end; background: var(--gold); color: #fffaf2; }
+.chat-bubble.bot { align-self: flex-start; background: rgba(156,106,40,0.08); border: 1px solid var(--line); }
 .chat-input-row { display: flex; gap: 10px; }
 .chat-input-row input { flex: 1; padding: 12px 14px; border-radius: 3px; }
 .chat-quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
@@ -802,7 +825,7 @@ pre.result-text, textarea.result-text {
   font-size: .74rem; padding: 6px 12px; border: 1px solid var(--line); border-radius: 20px; color: var(--ink-dim);
   transition: border-color .3s, color .3s;
 }
-.chat-quick button:hover { border-color: var(--gold); color: var(--gold-bright); }
+.chat-quick button:hover { border-color: var(--gold); color: var(--gold-deep); }
 
 .copy-btn {
   font-size: .74rem; color: var(--gold); border: 1px solid var(--gold-deep);

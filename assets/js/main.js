@@ -145,7 +145,7 @@
   );
   statEls.forEach((el) => statIo.observe(el));
 
-  /* ===== Canvas: Ginza night particles (gold bokeh drifting up) ===== */
+  /* ===== Canvas: soft watercolor pigment drifting ===== */
   const canvas = document.getElementById("ginzaCanvas");
   const ctx = canvas.getContext("2d");
   let particles = [];
@@ -162,19 +162,19 @@
     return {
       x: Math.random() * vw,
       y: vh + Math.random() * 200,
-      r: 0.6 + Math.random() * 2.2,
-      speed: 0.15 + Math.random() * 0.5,
-      drift: (Math.random() - 0.5) * 0.4,
-      alpha: 0.12 + Math.random() * 0.38,
+      r: 18 + Math.random() * 46,
+      speed: 0.06 + Math.random() * 0.16,
+      drift: (Math.random() - 0.5) * 0.15,
+      alpha: 0.04 + Math.random() * 0.07,
       hue: (() => {
         const r = Math.random();
-        if (r > 0.86) return "168,56,74";
-        if (r > 0.7) return "61,143,109";
-        return "201,162,39";
+        if (r > 0.66) return "198,123,118";
+        if (r > 0.33) return "127,168,150";
+        return "201,146,74";
       })(),
     };
   }
-  const COUNT = Math.min(90, Math.floor((window.innerWidth * window.innerHeight) / 14000));
+  const COUNT = Math.min(22, Math.floor((window.innerWidth * window.innerHeight) / 90000));
   for (let i = 0; i < COUNT; i++) {
     const p = makeParticle();
     p.y = Math.random() * vh;
@@ -182,6 +182,8 @@
   }
 
   let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const supportsBlur = "filter" in ctx;
+  if (supportsBlur) ctx.filter = "blur(18px)";
 
   function draw() {
     ctx.clearRect(0, 0, vw, vh);
