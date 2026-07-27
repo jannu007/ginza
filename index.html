@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GINZA AI OFFICE | 銀座発・AI経営支援オフィス</title>
 <meta name="description" content="銀座発のAI経営支援オフィス。経理・秘書・採用・法務・議事録・分析・接客まで、会社運営に必要な業務をAIツールで支えます。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23150f0a%22/><text x=%2250%22 y=%2270%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23ff5c8a%22>銀</text></svg>">
-<meta name="theme-color" content="#150f0a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%230c100d%22/><text x=%2250%22 y=%2270%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23c9a227%22>銀</text></svg>">
+<meta name="theme-color" content="#0c100d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Reggae+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v=1">
 </head>
 <body>
@@ -17,6 +17,9 @@
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="progress-bar" id="progressBar"></div>
 <canvas id="ginzaCanvas"></canvas>
+<div class="deco-frame" aria-hidden="true">
+  <span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span>
+</div>
 
 <!-- ===== Loader ===== -->
 <div class="loader" id="loader">
@@ -26,7 +29,7 @@
 <!-- ===== Header ===== -->
 <header class="header" id="header">
   <div class="header-inner">
-    <a href="#top" class="logo"><span class="hanko">銀</span>GINZA<span>AI OFFICE</span></a>
+    <a href="#top" class="logo"><span class="hanko"><span>銀</span></span>GINZA<span>AI OFFICE</span></a>
     <nav class="nav" id="nav">
       <a href="#service" data-label="壱">Service</a>
       <a href="#about" data-label="弐">About</a>

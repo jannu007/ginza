@@ -113,12 +113,12 @@
       r: 0.6 + Math.random() * 2.2,
       speed: 0.15 + Math.random() * 0.5,
       drift: (Math.random() - 0.5) * 0.4,
-      alpha: 0.15 + Math.random() * 0.5,
+      alpha: 0.12 + Math.random() * 0.38,
       hue: (() => {
         const r = Math.random();
-        if (r > 0.82) return "255,92,138";
-        if (r > 0.64) return "51,207,192";
-        return "255,180,60";
+        if (r > 0.86) return "168,56,74";
+        if (r > 0.7) return "61,143,109";
+        return "201,162,39";
       })(),
     };
   }
